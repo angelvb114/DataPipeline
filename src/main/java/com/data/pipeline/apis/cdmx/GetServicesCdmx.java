@@ -1,9 +1,6 @@
 package com.data.pipeline.apis.cdmx;
 
-import com.data.pipeline.models.entity.MetrobusLocation;
-import com.data.pipeline.models.service.AlcaldiaSeviceImpl;
 import com.data.pipeline.models.service.IAlcaldiaService;
-import com.data.pipeline.models.service.IMetrobusLocationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

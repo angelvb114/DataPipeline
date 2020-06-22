@@ -33,7 +33,7 @@ public class SaveAlcaldias {
      * @param responseJson contiene la respuesta del servicio de alcaldías de la CDMX
      */
 
-    protected void saveInDb(Map<String, Object> responseJson) {
+    public void saveInDb(Map<String, Object> responseJson) {
         if (responseJson.containsKey("records")) {
             List<Map<String, Object>> records = (List<Map<String, Object>>) responseJson.get("records");
             records.forEach(record -> {

@@ -28,7 +28,7 @@ public class SaveLocationData {
     @Autowired
     private IMetrobusLocationService iMetrobusLocationService;
 
-    protected void saveInDb(Map<String, Object> responseJson) {
+    public void saveInDb(Map<String, Object> responseJson) {
         if (responseJson.containsKey("records")) {
             List<Map<String, Object>> records = (List<Map<String, Object>>) responseJson.get("records");
             int sizeMetrobusLocation = 0;

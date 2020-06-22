@@ -1,0 +1,41 @@
+{
+  "nhits": 1,
+  "parameters": {
+    "dataset": "prueba_fetchdata_metrobus",
+    "timezone": "UTC",
+    "rows": 1,
+    "format": "json"
+  },
+  "records": [
+    {
+      "datasetid": "prueba_fetchdata_metrobus",
+      "recordid": "e1151d0854dbb1b2b7085be5517cee7786193d8b",
+      "fields": {
+        "vehicle_id": "177",
+        "trip_start_date": "20200428",
+        "date_updated": "2020-06-22 16:00:16",
+        "position_longitude": -99.17749786376953,
+        "trip_schedule_relationship": 0,
+        "position_speed": 13,
+        "position_latitude": 19.292600631713867,
+        "trip_route_id": "367",
+        "vehicle_label": "119",
+        "position_odometer": 0,
+        "trip_id": "9732304",
+        "vehicle_current_status": 1,
+        "geographic_point": [
+          19.292600631714,
+          -99.17749786377
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.17749786377,
+          19.292600631714
+        ]
+      },
+      "record_timestamp": "2020-06-22T21:00:16.844000+00:00"
+    }
+  ]
+}
