@@ -1,3 +1,9 @@
+## Compilar Proyecto
+
+mvn clean install
+
+mvn clean install -Dmaven.test.skip=true  # Omitir pruebas
+
 ## Crear nuestra base de datos mysql en un contenedor mysql
 
 sudo docker run -p 13306:3306 --name mysql-datapipeline -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=db_data_pipeline -e MYSQL_USER=angel -e MYSQL_PASSWORD=root -d mysql
