@@ -2,7 +2,9 @@
 
 mvn clean install
 
-mvn clean install -Dmaven.test.skip=true  # Omitir pruebas
+Omitir pruebas
+
+mvn clean install -Dmaven.test.skip=true
 
 ## Crear nuestra base de datos mysql en un contenedor mysql
 
