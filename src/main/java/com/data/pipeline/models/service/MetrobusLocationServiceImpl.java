@@ -35,11 +35,24 @@ public class MetrobusLocationServiceImpl implements IMetrobusLocationService {
         return iMetrobusLocationDao.save(metrobusLocation);
     }
 
+    /**
+     * Método encargado de regresar los datos de ubicación de las distintas unidades de metrobus
+     *
+     * @return una lista con las ubicaciones de las unidades
+     */
+
     @Override
     @Transactional(readOnly = true)
     public List<MetrobusLocation> findAll() {
         return (List<MetrobusLocation>) iMetrobusLocationDao.findAll();
     }
+
+    /**
+     * Método encargado de regresar los datos de ubicación de una unidad en especifico
+     *
+     * @param id de la unidad que se desea buscar
+     * @return regresa un objeto con los datos de la unidad
+     */
 
     @Override
     @Transactional
@@ -47,7 +60,15 @@ public class MetrobusLocationServiceImpl implements IMetrobusLocationService {
         return iMetrobusLocationDao.findById(id).orElse(null);
     }
 
+    /**
+     * Método encargado de regresar los datos históricos de ubicación de una unidad de metrobus
+     *
+     * @param unit la unidad deseada
+     * @return regresa una lista de datos de ubicacion
+     */
+
     @Override
+    @Transactional
     public List<MetrobusLocation> findByUnit(String unit) {
         return iMetrobusLocationDao.findByUnitQuery(unit);
     }

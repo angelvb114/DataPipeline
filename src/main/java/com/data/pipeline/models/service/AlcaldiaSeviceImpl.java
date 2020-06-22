@@ -35,11 +35,24 @@ public class AlcaldiaSeviceImpl implements IAlcaldiaService {
         return iAlcaldiasDao.save(alcaldia);
     }
 
+    /**
+     * Método encargado de mostrarnos todas las alcaldías en la CDMX
+     *
+     * @return regresa una lista con alcaldías
+     */
+
     @Override
     @Transactional(readOnly = true)
     public List<Alcaldia> findAll() {
         return (List<Alcaldia>) iAlcaldiasDao.findAll();
     }
+
+    /**
+     * Método encargado de buscar una alcaldía por medio del id
+     *
+     * @param id id de la alcaldía deseada
+     * @return regresa los datos de la alcaldía solicitada
+     */
 
     @Override
     @Transactional

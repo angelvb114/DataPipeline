@@ -102,6 +102,12 @@ public class MetrobusLocationRestController {
 
     }
 
+    /**
+     * Servicio encargado de regresar todas las alcaldías de la CDMX
+     *
+     * @return un objeto con todas las alcaldías
+     */
+
     @GetMapping("/alcaldias")
     public ResponseEntity<?> showAlcaldias() {
 
@@ -122,6 +128,13 @@ public class MetrobusLocationRestController {
         return new ResponseEntity<>(response, HttpStatus.OK);
 
     }
+
+    /**
+     * Regresa los datos de las unidades que han estado en una alcaldía en especifico
+     *
+     * @param id de la alcaldía
+     * @return un objeto con las unidades que has estado en dicha alcaldía
+     */
 
     @GetMapping("/alcaldias/{id}")
     public ResponseEntity<?> unitAlcaldia(@PathVariable Long id) {
