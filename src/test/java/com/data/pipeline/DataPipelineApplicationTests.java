@@ -2,6 +2,7 @@ package com.data.pipeline;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.stream.Stream;
 
 @Slf4j
 @SpringBootTest
+@AutoConfigureMockMvc
 abstract class DataPipelineApplicationTests {
 
     protected Map<String, Object> obtainFileLikeMap(String path) {
