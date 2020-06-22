@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Clase encargada de implementar las acciones que se llevaran acabo con el recurso MetrobusLocation
  *
@@ -31,6 +33,23 @@ public class MetrobusLocationServiceImpl implements IMetrobusLocationService {
     @Transactional
     public MetrobusLocation save(MetrobusLocation metrobusLocation) {
         return iMetrobusLocationDao.save(metrobusLocation);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<MetrobusLocation> findAll() {
+        return (List<MetrobusLocation>) iMetrobusLocationDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public MetrobusLocation findById(Long id) {
+        return iMetrobusLocationDao.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<MetrobusLocation> findByUnit(String unit) {
+        return iMetrobusLocationDao.findByUnitQuery(unit);
     }
 
 }

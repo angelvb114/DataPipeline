@@ -31,6 +31,13 @@ public class SaveLocationData {
     protected void saveInDb(Map<String, Object> responseJson) {
         if (responseJson.containsKey("records")) {
             List<Map<String, Object>> records = (List<Map<String, Object>>) responseJson.get("records");
+            int sizeMetrobusLocation = 0;
+            MetrobusLocation lastMetrobusLocation = null;
+            if(iMetrobusLocationService.findAll().size() > 0) {
+                sizeMetrobusLocation = iMetrobusLocationService.findAll().size();
+                lastMetrobusLocation = iMetrobusLocationService.findById((long) (sizeMetrobusLocation));
+            }
+            MetrobusLocation finalLastMetrobusLocation = lastMetrobusLocation;
             records.forEach(record -> {
                 HashMap<String, Object> field = (HashMap<String, Object>) record.get("fields");
                 MetrobusLocation metrobusLocation = new MetrobusLocation();
@@ -38,7 +45,9 @@ public class SaveLocationData {
                 metrobusLocation.setDate(parseDate(field.get("date_updated").toString()));
                 metrobusLocation.setLatitude((Double) field.get("position_latitude"));
                 metrobusLocation.setLongitude((Double) field.get("position_longitude"));
-                iMetrobusLocationService.save(metrobusLocation);
+                if(finalLastMetrobusLocation == null || metrobusLocation.getDate().after(finalLastMetrobusLocation.getDate())) {
+                    iMetrobusLocationService.save(metrobusLocation);
+                }
             });
         } else {
             log.error("Error: The 'records' tag not was found!!");

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Clase encargada de implementar las acciones que se llevaran acabo con el recurso Alcaldía
  *
@@ -31,6 +33,18 @@ public class AlcaldiaSeviceImpl implements IAlcaldiaService {
     @Transactional
     public Alcaldia save(Alcaldia alcaldia) {
         return iAlcaldiasDao.save(alcaldia);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Alcaldia> findAll() {
+        return (List<Alcaldia>) iAlcaldiasDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public Alcaldia findById(Long id) {
+        return iAlcaldiasDao.findById(id).orElse(null);
     }
 
 }

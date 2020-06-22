@@ -1,5 +1,9 @@
 package com.data.pipeline.apis.cdmx;
 
+import com.data.pipeline.models.entity.MetrobusLocation;
+import com.data.pipeline.models.service.AlcaldiaSeviceImpl;
+import com.data.pipeline.models.service.IAlcaldiaService;
+import com.data.pipeline.models.service.IMetrobusLocationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -32,6 +36,9 @@ public class GetServicesCdmx {
     @Autowired
     private SaveLocationData saveLocationData;
 
+    @Autowired
+    private IAlcaldiaService iAlcaldiaService;
+
     /**
      * Realizamos una petición al servicio que contiene datos de las alcaldías
      *
@@ -41,12 +48,14 @@ public class GetServicesCdmx {
     @Bean
     public CommandLineRunner alcaldiasService() {
         return args -> {
-            Map<String, Object> responseJson = restTemplate.getForObject(
-                    "https://datos.cdmx.gob.mx/api/records/1.0/search/?dataset=alcaldias&rows=16", HashMap.class);
-            if (responseJson != null) {
-                saveAlcaldias.saveInDb(responseJson);
-            } else {
-                log.error("The alcaldías service response is null");
+            if(iAlcaldiaService.findAll() == null || iAlcaldiaService.findAll().isEmpty()) {
+                Map<String, Object> responseJson = restTemplate.getForObject(
+                        "https://datos.cdmx.gob.mx/api/records/1.0/search/?dataset=alcaldias&rows=16", HashMap.class);
+                if (responseJson != null) {
+                    saveAlcaldias.saveInDb(responseJson);
+                } else {
+                    log.error("The alcaldías service response is null");
+                }
             }
         };
     }
@@ -57,7 +66,7 @@ public class GetServicesCdmx {
 
     @Scheduled(fixedRate = 3600000)
     public void metrobusLocationService() {
-        HashMap<String, Object> responseJson = restTemplate.getForObject(
+        Map<String, Object> responseJson = restTemplate.getForObject(
                 "https://datos.cdmx.gob.mx/api/records/1.0/search/?dataset=prueba_fetchdata_metrobus&rows=207", HashMap.class);
         if (responseJson != null) {
             saveLocationData.saveInDb(responseJson);

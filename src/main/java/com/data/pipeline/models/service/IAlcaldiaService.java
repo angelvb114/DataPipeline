@@ -2,6 +2,8 @@ package com.data.pipeline.models.service;
 
 import com.data.pipeline.models.entity.Alcaldia;
 
+import java.util.List;
+
 /**
  * Interface encargada de definir las acciones que se le aplicarán al recurso Alcaldía
  *
@@ -11,5 +13,11 @@ import com.data.pipeline.models.entity.Alcaldia;
  */
 
 public interface IAlcaldiaService {
+
     Alcaldia save(Alcaldia alcaldia);
+
+    List<Alcaldia> findAll();
+
+    Alcaldia findById(Long id);
+
 }
